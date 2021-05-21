@@ -1,0 +1,31 @@
+{% extends "buses/layout.html"%}
+{% block body %}
+<h1>Bus Schedule</h1>
+<ul>
+    
+    <li>{{schedule.busInfo}}</li>
+    <li>From {{schedule.origin}} To {{schedule.destination}}</li>
+    <li>Cost Per Ticket - {{schedule.cost}}</li>
+    <li>Time - {{schedule.time}}</li>
+    <li>Duration - {{schedule.duration}}</li>
+    {% for passenger in non_passengers %}
+    <li>{{passenger.username}}</li>
+    {% endfor %}
+
+</ul>
+    
+</ul>
+<h2>Buy Ticket</h2>
+<form action="{% url 'book' schedule.id %}" method ="post">
+    {% csrf_token %}
+    <select name="passenger" >
+        {% for passenger in non_passengers %}
+        <option value="{{passenger.id}}">{{passenger.custfName}}</option>
+        {% endfor %}
+        
+    </select>
+    <input type="submit">
+</form>
+
+<a href="{% url 'index'%}">Back to Buses page</a>
+{% endblock %}

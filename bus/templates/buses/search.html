@@ -1,0 +1,21 @@
+{% extends "buses/layout.html" %}
+{% block body %}
+<h1>Search Trip</h1>
+<form action="{% url 'search' %}" method="POST">
+    {% csrf_token %}
+    <select name="origin" >
+        {% for busStop in busStops%}
+        <option value="{{busStop.id}}">{{ busStop }}</option>
+        {% endfor %}
+    </select>
+    <select name="destination" >
+        {% for busStop in busStops%}
+        <option value="{{busStop.id}}">{{ busStop }}</option>
+        {% endfor %}
+    </select>
+    <input type="date" name="date" placeholder="Date">
+    
+    <input type="submit", value="Find">
+</form>
+
+{% endblock %}

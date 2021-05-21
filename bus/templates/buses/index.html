@@ -1,0 +1,10 @@
+{% extends "buses/layout.html"%}
+{% block body %}
+<h1>Bus</h1>
+<ul>
+    {% for schedule in schedul %}
+    <a href="{% url 'bus' schedule.id %}"> <li>Bus {{schedule.id}}: {{ schedule.busInfo }} from {{schedule.origin}} to {{schedule.destination}}</li></a>
+   
+    {% endfor %}
+</ul>
+{% endblock %}

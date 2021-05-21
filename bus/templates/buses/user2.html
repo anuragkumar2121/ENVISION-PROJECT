@@ -1,0 +1,23 @@
+{% extends "buses/layout.html" %}
+
+{% block body %}
+<div class = "container">
+      <h1>Welcome, {{ request.user.first_name }} </h1>
+
+    <ul>
+        <li>Username: {{ request.user.username }}</li>
+        <li>Email: {{ request.user.email }}</li>
+    </ul>
+
+    <h2>YOUR TICKETS</h2>
+    <ul>
+        {% for bus in myBuses %}
+        <li>{{bus}}</li>
+        {% endfor %}
+    </ul>
+<a href = "{% url 'logout' %}">Log Out</a>  
+</div>
+
+
+{% endblock %}
+
