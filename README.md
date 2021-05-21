@@ -1,7 +1,7 @@
 # ENVISION-PROJECT
 
      Large Screen
-<img src="https://github.com/anuragkumar2121/ENVISION-PROJECT/blob/main/IMG/1.PNG"
+<img src="https://github.com/anuragkumar2121/ENVISION-PROJECT/blob/main/IMG/1.png"
      alt="Markdown Monster icon"
      style="float: left; margin-right: 10px;" />
      Medium screen
