@@ -187,3 +187,7 @@ We did not build authentication from scratch, rather, we used a built-in Django 
      <img src="https://github.com/anuragkumar2121/ENVISION-PROJECT/blob/main/IMG/7.png"
      alt="Markdown Monster icon"
      style="float: left; margin-right: 10px;" />
+     8
+     <img src="https://github.com/anuragkumar2121/ENVISION-PROJECT/blob/main/IMG/8.png"
+     alt="Markdown Monster icon"
+     style="float: left; margin-right: 10px;" />
