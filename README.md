@@ -155,12 +155,7 @@ We did not build authentication from scratch, rather, we used a built-in Django 
   * When a user clicks on the “Your Tickets” link, they get all their tickets which they’ve booked till date. For this purpose, the user’s passenger_id is used, which is already stored in Local Storage.
   * There is a “Query” link which is for the user to contact us via mail, site message or by contacting and the user can track any bus via bus_id after contacting us as there is a separate number for tracking of bus via bus id.
 
-## Github Links
-These are links of the implementations of all team members.
-  * **Raunak** - [raunak321321](https://github.com/raunak321321/BusPrix-Project)
-  * **Reetesh** - [REETESHDESHMUKH](https://github.com/REETESHDESHMUKH/BUS-PRIX)
-  * **Shreeranjita** - [Shreeranjita1222](https://github.com/Shreeranjita1222/shree1222)
-  * **Anurag** - [anuragkumar2121](https://github.com/anuragkumar2121/ENVISION-PROJECT)
+
 # Results
 
 
