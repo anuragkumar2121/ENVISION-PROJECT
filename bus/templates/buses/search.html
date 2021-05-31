@@ -1,21 +1,165 @@
 {% extends "buses/layout.html" %}
-{% block body %}
-<h1>Search Trip</h1>
-<form action="{% url 'search' %}" method="POST">
-    {% csrf_token %}
-    <select name="origin" >
-        {% for busStop in busStops%}
-        <option value="{{busStop.id}}">{{ busStop }}</option>
-        {% endfor %}
-    </select>
-    <select name="destination" >
-        {% for busStop in busStops%}
-        <option value="{{busStop.id}}">{{ busStop }}</option>
-        {% endfor %}
-    </select>
-    <input type="date" name="date" placeholder="Date">
-    
-    <input type="submit", value="Find">
-</form>
 
-{% endblock %}
+{% block body %}
+
+  <!-- ======= Header ======= -->
+  <header id="header">
+    <div class="container">
+
+      <div id="logo" class="pull-left">
+        <!-- Uncomment below if you prefer to use a text image -->
+        <h1><a href="{% url 'index' %}">BUSPRIX</a></h1>-->
+      </div>
+
+      <nav id="nav-menu-container">
+        <ul class="nav-menu">
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#features">Features</a></li>
+          <li><a href="#portfolio">Portfolio</a></li>
+          <li><a href="#team">Team</a></li>
+          <li class="menu-has-children"><a href="">Bus Stations</a>
+            
+            <ul>
+              {% for busstop in busStops %}
+              <li><a href="#">{{busstop}}</a></li>
+              {% endfor %}
+            </ul>
+          </li>
+          <li><a href="#contact">Contact Us</a></li>
+        </ul>
+      </nav>
+      <!-- #nav-menu-container -->
+
+      
+
+      <nav class="nav social-nav pull-right d-none d-lg-inline">
+        <a href="#"><i class="fa fa-twitter"></i></a> <a href="#"><i class="fa fa-facebook"></i></a> <a href="#"><i class="fa fa-linkedin"></i></a> <a href="#"><i class="fa fa-envelope"></i></a>
+      </nav>
+    </div>
+  </header><!-- End Header -->
+
+
+  <div class="container">
+    <h2>
+        Where you want to go ?
+        <small class="text-muted">Select Origin and Destination</small>
+    </h2>
+    <hr class="my-4">
+
+    <form action="{% url 'search' %}" method="POST">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="exampleFormControlSelect1" >Origin</label>
+            <select class="form-control" id="exampleFormControlSelect1" name="origin" class="alert alert-dark">
+                {% for busStop in busStops%}
+                <option value="{{busStop.id}}">{{ busStop }}</option>
+                {% endfor %}
+            </select>
+          </div>
+          <div class="form-group">
+        <label for="exampleFormControlSelect1">Destination</label>
+        <select class="form-control" id="exampleFormControlSelect1" name="destination">
+              {% for busStop in busStops%}
+              <option value="{{busStop.id}}">{{ busStop }}</option>
+              {% endfor %}
+          </select>
+        </div>
+
+        <label for="Date">Date</label>
+        <br>
+        <input type="date" name="date" placeholder="Date">
+        <br><br>
+        
+        <button type="submit" value="Find" class="btn btn-primary btn-sm">Submit</button>
+        
+    </form>
+
+  </div>
+  
+    
+
+
+    <section class="inner-page">
+      <div class="container">
+        <p>
+          Example inner page template
+        </p>
+      </div>
+    </section>
+
+  </main><!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+  <footer class="site-footer">
+    <div class="bottom">
+      <div class="container">
+        <div class="row">
+
+          <div class="col-lg-6 col-xs-12 text-lg-left text-center">
+            <p class="copyright-text">
+              &copy; Copyright <strong>Bell</strong>. All Rights Reserved
+            </p>
+            <div class="credits">
+              <!--
+              All the links in the footer should remain intact.
+              You can delete the links only if you purchased the pro version.
+              Licensing information: https://bootstrapmade.com/license/
+              Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/buy/?theme=Bell
+            -->
+              Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+            </div>
+          </div>
+
+          <div class="col-lg-6 col-xs-12 text-lg-right text-center">
+            <ul class="list-inline">
+              <li class="list-inline-item">
+                <a href="index.html">Home</a>
+              </li>
+
+              <li class="list-inline-item">
+                <a href="#about">About Us</a>
+              </li>
+
+              <li class="list-inline-item">
+                <a href="#features">Features</a>
+              </li>
+
+              <li class="list-inline-item">
+                <a href="#portfolio">Portfolio</a>
+              </li>
+
+              <li class="list-inline-item">
+                <a href="#team">Team</a>
+              </li>
+
+              <li class="list-inline-item">
+                <a href="#contact">Contact</a>
+              </li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </footer><!-- End Footer -->
+
+  <a class="scrolltop" href="#"><span class="fa fa-angle-up"></span></a>
+
+  <!-- Vendor JS Files -->
+  <script src="assets/vendor/jquery/jquery.min.js"></script>
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/jquery.easing/jquery.easing.min.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+  <script src="assets/vendor/counterup/counterup.min.js"></script>
+  <script src="assets/vendor/tether/js/tether.min.js"></script>
+  <script src="assets/vendor/jquery-sticky/jquery.sticky.js"></script>
+  <script src="assets/vendor/venobox/venobox.min.js"></script>
+  <script src="assets/vendor/lockfixed/jquery.lockfixed.min.js"></script>
+  <script src="assets/vendor/waypoints/jquery.waypoints.min.js"></script>
+  <script src="assets/vendor/superfish/superfish.min.js"></script>
+  <script src="assets/vendor/hoverIntent/hoverIntent.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="assets/js/main.js"></script>
+  
+  {% endblock %}

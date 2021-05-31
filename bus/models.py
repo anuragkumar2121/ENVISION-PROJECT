@@ -17,7 +17,7 @@ class BusStop(models.Model):
     StopLocation = models.CharField(max_length=64)
 
     def __str__(self):
-        return f"{self.StopName}({self.StopLocation})"
+        return f"{self.StopLocation}"
 
 class Route(models.Model):
     
@@ -37,7 +37,7 @@ class Schedule(models.Model):
     duration = models.IntegerField()
     cost = models.IntegerField()
     def __str__(self):
-        return f"{self.id}: {self.origin} to {self.destination} at {self.time}"
+        return f"{self.id}: {self.origin} to {self.destination} at {self.time} on {self.date}"
 
 
 

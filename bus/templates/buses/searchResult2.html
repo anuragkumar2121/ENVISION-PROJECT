@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>
+            Buses
+        </title>
+    </head>
+    <body>
+<h1>Available Buses on Routes</h1>
+<ul>
+    {% for schedule in schedule%}
+    <li>{{schedule}}</li>
+    {% endfor %}
+</ul>
+
+
+
+    </body>
+</html>

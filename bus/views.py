@@ -92,6 +92,7 @@ def bus(request, schedule_id):
         "schedule": schedule,
         "passengers": schedule.passengers.all(),
         "non_passengers": non_passenger,
+        "busStops": BusStop.objects.all()
     })
 
 
@@ -112,6 +113,7 @@ def Search(request):
             "schedule": Schedule.objects.filter(destination=Destiantion, origin=Origin, date=Date).all()
         })
     return render(request, "buses/search.html", {
+        "busStops": BusStop.objects.all(),
         "busStops": BusStop.objects.all()
     })
 
