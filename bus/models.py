@@ -36,6 +36,7 @@ class Schedule(models.Model):
     time = models.TimeField()
     duration = models.IntegerField()
     cost = models.IntegerField()
+    seatsEmpty = models.IntegerField(blank = True, null=True)
     def __str__(self):
         return f"{self.id}: {self.origin} to {self.destination} at {self.time} on {self.date}"
 
@@ -54,8 +55,9 @@ class Passenger(models.Model):
 class Ticket(models.Model):
     schedule = models.ForeignKey(Schedule,on_delete=models.CASCADE)
     passenger = models.ForeignKey(Passenger,on_delete=models.CASCADE)
+    number = models.IntegerField()
     def __str__(self):
-        return f"{self.CustID}: {self.schedule}"
+        return f"{self.schedule}: {self.number}"
 
 
 class NameForm(models.Model):
