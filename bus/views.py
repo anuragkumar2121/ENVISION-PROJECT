@@ -6,13 +6,12 @@ from django.http import HttpResponseRedirect, response
 from django.shortcuts import render
 from django.urls import reverse
 from .forms import NameForms
-from .models import NameForm, Passenger, BusStop
+from .models import NameForm, Passenger, BusStop, Ticket
 from django.contrib.auth.models import User
 
 from .models import Bus, BusStop, Schedule, Passenger
 
 # Create your views here.
-
 
 def index(request):
     if request.method == "POST":
@@ -54,7 +53,6 @@ def logout_view(request):
     return render(request,"registartion/login.html",{
         "message": "Logged out."
     })
-
 def register(request):
     if request.method == "POST":
         form = RegisterForm(request.POST)
@@ -88,11 +86,16 @@ def bus(request, schedule_id):
     schedule = Schedule.objects.get(pk=schedule_id)
     Username = request.user.username
     non_passenger=Passenger.objects.filter(username=Username)
+    tickets = Ticket.objects.filter(schedule=schedule)
+    totalTicket = schedule.busInfo.seats
+    for ticket in tickets:
+        totalTicket -= ticket.number
+    schedule.seatsEmpty = totalTicket
     return render(request, "buses/bus.html", {
         "schedule": schedule,
         "passengers": schedule.passengers.all(),
         "non_passengers": non_passenger,
-        "busStops": BusStop.objects.all()
+        "busStops": BusStop.objects.all(),
     })
 
 
@@ -100,6 +103,9 @@ def book(request, schedule_id):
     if request.method == "POST":
         schedule = Schedule.objects.get(pk=schedule_id)
         passenger = Passenger.objects.get(pk=(int)(request.POST["passenger"]))
+        ticketNum = (int)(request.POST["ticketNum"])
+        ticket = Ticket(schedule=schedule,passenger=passenger,number=ticketNum)
+        ticket.save()
         passenger.buses.add(schedule)
         return HttpResponseRedirect(reverse("bus", args=(schedule.id,)))
 
