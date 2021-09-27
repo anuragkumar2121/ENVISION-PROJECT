@@ -1,4 +1,6 @@
 {% extends "buses/layout.html" %}
+{% load crispy_forms_tags %}
+
 
 {% block body %}
 
@@ -40,23 +42,42 @@
 
 
 
-  <div class= "jumbotron">
-      <h1 class= "display-4">Bus Schedule</h1>
-      <p class = "lead">So here are all details about bus from {{schedule.origin}} to {{schedule.destination}}</p>
-      <hr class="my-4">
-      <p>Click below button to book now</p>
-      <form action="{% url 'book' schedule.id %}" method ="post">
-        {% csrf_token %}
-        <select class="form-control form-control-lg" id="exampleFormControlSelect1" name="passenger" >
-            {% for passenger in non_passengers %}
-            <option value="{{passenger.id}}">{{passenger.custfName}}</option>
-            {% endfor %}
-            
+  <div class="jumbotron">
+    <h1 class="display-4">Bus Schedule</h1>
+    <p class="lead">So here are all details about bus from {{schedule.origin}} to {{schedule.destination}}</p>
+    <hr class="my-4">
+    <h3>
+      Available Seats: {{schedule.seatsEmpty}}
+    </h3>
+    <br>
+    <p>Click below button to book now</p>
+    <form action="{% url 'book' schedule.id %}" method="post">
+      {% csrf_token %}
+      <select class="form-control form-control-lg" id="exampleFormControlSelect1" name="passenger">
+        {% for passenger in non_passengers %}
+        <option value="{{passenger.id}}">{{passenger.custfName}}</option>
+        {% endfor %}
         </select>
-        <br>
-        <button type="submit" class="btn btn-outline-primary">Book now</button>
+        <div class="form-group">
+          <label for="exampleFormControlSelect1">Enter Number of Tickets</label>
+          <select name= "ticketNum" class="form-control" id="exampleFormControlSelect1">
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+          </select>
+        </div>
+
+      <br>
+      <button type="submit" class="btn btn-outline-primary">Book now</button>
     </form>
-    </div>
+
+
+                                                                                                                                                                              
+
+
+  </div>
   
  <div class = "container-fluid">
 
