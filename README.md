@@ -10,7 +10,9 @@ Features in our websites include a user attractive and interactive home page, ea
 **Django** is a Python-based free and open-source web framework that plays a paramount role in the implementation of our web app. Along with which, we have used HTML, CSS and Javascript for the design of our webpage.
 
 # Installation
-So first we need package manager for python so use followwing command
+This installation is specific to linux systems for other OS it may vary slightly.
+
+So first we need package manager for python so use following command
 
 ```sudo apt install python3-pip -y```
 
