@@ -9,14 +9,13 @@ from .models import NameForm, Passenger, BusStop, Ticket
 from django.contrib.auth.models import User
 from .models import *
 
-# Create your views here.
 
 def index(request):
     if request.method == "POST":
         form = NameForm(request.POST)
         return HttpResponseRedirect(reverse("index"))
 
-    return render(request, "buses/index3.html", {
+    return render(request, "buses/index.html", {
         "schedul": Schedule.objects.all(),
         "busStops": BusStop.objects.all()
     })
@@ -132,9 +131,9 @@ def form(request):
         m = request.POST["message"]
         t = NameForm(name=n, email=e, subject=s, message=m)
         t.save()
-        return render(request, "buses/index3.html", {
+        return render(request, "buses/index.html", {
             "message": "Query Sent."
         })
 
     else:
-        return render(request, "buses/index3.html")
+        return render(request, "buses/index.html")
