@@ -1,15 +1,13 @@
 from django.contrib.auth import authenticate, login, logout
-from django.contrib.auth.forms import UserCreationForm
 from .forms import RegisterForm
 from django.shortcuts import render, redirect
-from django.http import HttpResponseRedirect, response
+from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
 from .forms import NameForms
 from .models import NameForm, Passenger, BusStop, Ticket
 from django.contrib.auth.models import User
-
-from .models import Bus, BusStop, Schedule, Passenger
+from .models import *
 
 # Create your views here.
 
@@ -23,7 +21,7 @@ def index(request):
         "busStops": BusStop.objects.all()
     })
 
-def index2(request):
+def profile(request):
     Username = request.user.username
     passengerUser=Passenger.objects.filter(username=Username)[0]
     myBuses = passengerUser.buses.all()
@@ -53,6 +51,7 @@ def logout_view(request):
     return render(request,"registartion/login.html",{
         "message": "Logged out."
     })
+
 def register(request):
     if request.method == "POST":
         form = RegisterForm(request.POST)
@@ -110,7 +109,7 @@ def book(request, schedule_id):
         return HttpResponseRedirect(reverse("bus", args=(schedule.id,)))
 
 
-def Search(request):
+def search(request):
     if request.method == "POST":
         Origin = request.POST["origin"]
         Destiantion = request.POST["destination"]
@@ -122,26 +121,6 @@ def Search(request):
         "busStops": BusStop.objects.all(),
         "busStops": BusStop.objects.all()
     })
-
-
-def form(request):
-    if request.method == "POST":
-        form = NameForms(request.POST)
-
-        if form.is_valid():
-            n = form.cleaned_data["name"]
-            e = form.cleaned_data["email"]
-            s = form.cleaned_data["subject"]
-            m = form.cleaned_data["message"]
-            t = NameForm(name=n, email=e, subject=s, message=m)
-            t.save()
-            return render(request, "buses/form.html", {
-                "message": "Query Sent."
-            })
-
-    else:
-        form = NameForm()
-    return render(request, "buses/form.html", {"form": form})
 
 
 def form(request):
