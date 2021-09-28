@@ -1,4 +1,4 @@
-# ENVISION-PROJECT
+# BUSPRIX
 # Introduction
 
 In this fast moving world of science and technology, transportation is an imperative aspect, something that we just cannot do without. The four of us in our team of Bus Prix, aim to ease the hassle of travel through our very intriguing user interactive web app.
@@ -8,6 +8,27 @@ Buses are the most common, easy and cost effective modes of transport these days
 Features in our websites include a user attractive and interactive home page, easy login and signup, filter to choose the buses only pertaining to the origin and destination input by the customer, booking of tickets in just one click and display of booking status.
 
 **Django** is a Python-based free and open-source web framework that plays a paramount role in the implementation of our web app. Along with which, we have used HTML, CSS and Javascript for the design of our webpage.
+
+# Installation
+This installation is specific to linux systems for other OS it may vary slightly.
+
+So first we need package manager for python so use following command
+
+```sudo apt install python3-pip -y```
+
+Next we need **Django**
+To install the package, run the apt command below.
+
+```apt install python3-django```
+
+Check its version using
+
+```django-admin --version```
+
+We also need to install crispy forms and that in the project directory
+To install that package use following command
+
+```pip install django-crispy-forms```
 
 
 # Methodology
