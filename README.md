@@ -1,4 +1,4 @@
-# ENVISION-PROJECT
+# BUSPRIX
 # Introduction
 
 In this fast moving world of science and technology, transportation is an imperative aspect, something that we just cannot do without. The four of us in our team of Bus Prix, aim to ease the hassle of travel through our very intriguing user interactive web app.
