@@ -11,17 +11,21 @@ Features in our websites include a user attractive and interactive home page, ea
 
 # Installation
 So first we need package manager for python so use followwing command
+
 ```sudo apt install python3-pip -y```
 
 Next we need **Django**
 To install the package, run the apt command below.
+
 ```apt install python3-django```
 
 Check its version using
+
 ```django-admin --version```
 
 We also need to install crispy forms and that in the project directory
 To install that package use following command
+
 ```pip install django-crispy-forms```
 
 
