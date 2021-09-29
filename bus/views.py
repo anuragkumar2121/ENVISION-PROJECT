@@ -85,13 +85,12 @@ def bus(request, schedule_id):
     Username = request.user.username
     non_passenger=Passenger.objects.filter(username=Username)
     tickets = Ticket.objects.filter(schedule=schedule)
-    totalTicket = schedule.busInfo.seats
+    totalSeats = schedule.busInfo.seats
     for ticket in tickets:
-        totalTicket -= ticket.number
-    schedule.seatsEmpty = totalTicket
+        totalSeats -= ticket.number
+    schedule.seatsEmpty = totalSeats
     return render(request, "buses/bus.html", {
         "schedule": schedule,
-        "passengers": schedule.passengers.all(),
         "non_passengers": non_passenger,
         "busStops": BusStop.objects.all(),
     })
