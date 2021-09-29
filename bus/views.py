@@ -40,7 +40,7 @@ def login_view(request):
             login(request, user)
             return HttpResponseRedirect(reverse("profile"))
         else:
-            return render(request,"buses/index3.html",{
+            return render(request,"buses/index.html",{
                 "message": "Invalid credentials."
             })
     return render(request, "registration/login.html")
