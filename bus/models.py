@@ -37,6 +37,7 @@ class Schedule(models.Model):
     duration = models.IntegerField()
     cost = models.IntegerField()
     seatsEmpty = models.IntegerField(blank = True, null=True)
+    
     def __str__(self):
         return f"{self.id}: {self.origin} to {self.destination} at {self.time} on {self.date}"
 

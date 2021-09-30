@@ -9,7 +9,7 @@ from .models import NameForm, Passenger, BusStop, Ticket
 from django.contrib.auth.models import User
 from .models import *
 
-
+#This is view for homepage and the POST method is for query form on home page.
 def index(request):
     if request.method == "POST":
         form = NameForm(request.POST)
@@ -20,6 +20,7 @@ def index(request):
         "busStops": BusStop.objects.all()
     })
 
+# profile view, sending all booked bus schedules and personal info to template user.html
 def profile(request):
     Username = request.user.username
     passengerUser=Passenger.objects.filter(username=Username)[0]
@@ -31,6 +32,7 @@ def profile(request):
         "myBuses": myBuses
     })
 
+# View for login, username and password verified
 def login_view(request):
     if request.method == "POST":
         username = request.POST["username"]
@@ -45,12 +47,14 @@ def login_view(request):
             })
     return render(request, "registration/login.html")
 
+# logout using default django function
 def logout_view(request):
     logout(request)
     return render(request,"registartion/login.html",{
         "message": "Logged out."
     })
 
+# Using POST for taking data and forming Passenger Object and login credentials
 def register(request):
     if request.method == "POST":
         form = RegisterForm(request.POST)
@@ -66,20 +70,7 @@ def register(request):
         form = RegisterForm()
     return render(request, "register/register.html",{"form":form})
 
-
-def logout_view(request):
-    logout(request)
-    return render(request, "users/login.html", {
-        "message": "Logged out."
-    })
-
-
-def getStarted(request):
-    return render(request, "buses/index.html", {
-        "schedul": Schedule.objects.all()
-    })
-
-
+# Subtracting booked seats from total seats to get available seats
 def bus(request, schedule_id):
     schedule = Schedule.objects.get(pk=schedule_id)
     Username = request.user.username
@@ -95,18 +86,18 @@ def bus(request, schedule_id):
         "busStops": BusStop.objects.all(),
     })
 
-
+# make ticket object based on POST request from bus detail webpage
 def book(request, schedule_id):
     if request.method == "POST":
         schedule = Schedule.objects.get(pk=schedule_id)
         passenger = Passenger.objects.get(pk=(int)(request.POST["passenger"]))
-        ticketNum = (int)(request.POST["ticketNum"])
-        ticket = Ticket(schedule=schedule,passenger=passenger,number=ticketNum)
+        seatNum = (int)(request.POST["ticketNum"])
+        ticket = Ticket(schedule=schedule,passenger=passenger,number=seatNum)
         ticket.save()
         passenger.buses.add(schedule)
         return HttpResponseRedirect(reverse("bus", args=(schedule.id,)))
 
-
+# Getting origin destination and date from POST and giving buses on that time
 def search(request):
     if request.method == "POST":
         Origin = request.POST["origin"]
@@ -120,10 +111,9 @@ def search(request):
         "busStops": BusStop.objects.all()
     })
 
-
+# Gettinf POST request with data of query form and making NameForm object of the same
 def form(request):
     if request.method == "POST":
-
         n = request.POST["name"]
         e = request.POST["email"]
         s = request.POST["subject"]
